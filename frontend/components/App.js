@@ -1,6 +1,5 @@
 import React from 'react';
 import Form from './Form';
-import ToDo from './Todo';
 import TodoList from './TodoList';
 
 
