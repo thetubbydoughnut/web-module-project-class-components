@@ -50,10 +50,12 @@ export default class App extends React.Component {
         handleInputChange={this.handleInputChange}
         inputValue={this.state.toDo}
         />
+        {this.state.todos.length > 0 && (
         <button onClick={this.toggleHideCompleted}>
           {this.state.hideCompleted ? "Show" : "Hide"} Completed
         </button>
+        )}
       </div>
-    )
+    );
   }
 }
