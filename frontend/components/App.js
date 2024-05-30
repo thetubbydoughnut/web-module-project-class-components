@@ -15,7 +15,8 @@ export default class App extends React.Component {
   updateTodoList = (e) => {
     e.preventDefault()
     this.setState(prevState => ({
-      todos: [...prevState.todos, { id: Date.now(), text: this.state.toDo, completed: false}]
+      todos: [...prevState.todos, { id: Date.now(), text: this.state.toDo, completed: false}],
+      toDo: ''
     }));
   }
 
@@ -28,7 +29,10 @@ export default class App extends React.Component {
       <div>
         <TodoList todos={this.state.todos}/>
         <ToDo id={Date.now}/>
-        <Form updateTodoList={this.updateTodoList} handleInputChange={this.handleInputChange}/>
+        <Form updateTodoList={this.updateTodoList} 
+        handleInputChange={this.handleInputChange}
+        inputValue={this.state.toDo}
+        />
       </div>
     )
   }
