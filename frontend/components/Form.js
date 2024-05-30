@@ -3,9 +3,10 @@ import React from 'react'
 export default class Form extends React.Component {
   render() {
     return (
-      <div>
-        Form
-      </div>
+      <form onSubmit={this.props.updateTodoList}>
+        <input placeholder='Type Todo' onChange={this.props.handleInputChange}/>
+        <button type='submit'>Submit</button>
+      </form>
     )
   }
 }
