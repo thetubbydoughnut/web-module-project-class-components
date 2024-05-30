@@ -8,7 +8,9 @@ export default class App extends React.Component {
   constructor() {
     super();
     this.state = {
-      todos: []
+      todos: [],
+      toDo: '',
+      hideCompleted: false
     }
   }
 
@@ -23,6 +25,18 @@ export default class App extends React.Component {
   handleInputChange = (e) => {
     this.setState({ toDo: e.target.value})
   }
+
+  toggleComplete = (id) => {
+    this.setState(prevState => ({
+      todos: prevState.todos.map(todo => todo.id === id ? {...todo, completed: !todo.completed} : todo)
+    }));
+  }
+
+    toggleHideCompleted = () => {
+      this.setState(prevState => ({
+        hideCompleted: !prevState.hideCompleted
+      }));
+    }
 
   render() {
     return (
