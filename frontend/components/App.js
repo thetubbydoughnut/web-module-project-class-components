@@ -16,11 +16,13 @@ export default class App extends React.Component {
 
   updateTodoList = (e) => {
     e.preventDefault()
+    if (this.state.toDo.trim()) {
     this.setState(prevState => ({
       todos: [...prevState.todos, { id: Date.now(), text: this.state.toDo, completed: false}],
       toDo: ''
     }));
   }
+}
 
   handleInputChange = (e) => {
     this.setState({ toDo: e.target.value})
@@ -39,14 +41,18 @@ export default class App extends React.Component {
     }
 
   render() {
+    const visibleTodos = this.state.hideCompleted ? this.state.todos.filter(todo => !todo.completed) : this.state.todos;
+
     return (
       <div>
-        <TodoList todos={this.state.todos}/>
-        <ToDo id={Date.now}/>
+        <TodoList todos={visibleTodos} toggleComplete={this.toggleComplete}/>
         <Form updateTodoList={this.updateTodoList} 
         handleInputChange={this.handleInputChange}
         inputValue={this.state.toDo}
         />
+        <button onClick={this.toggleHideCompleted}>
+          {this.state.hideCompleted ? "Show" : "Hide"} Completed
+        </button>
       </div>
     )
   }
